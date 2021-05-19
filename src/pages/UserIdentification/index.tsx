@@ -23,7 +23,6 @@ export function UserIdentification() {
 
   function handleInputFocus() {
     setIsFocused(true);
-
   }
   
   function handleInputBlur() {

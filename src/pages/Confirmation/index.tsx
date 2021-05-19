@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { Button } from '../../components/Button';
 
@@ -11,6 +12,12 @@ import {
  } from "./styles";
 
 export function Confirmation() {
+  const navigation = useNavigation();
+
+  function handleNavigateToPlantSelection() {
+    navigation.navigate('PlantSelection');
+  }
+
   return(
     <Container>
       <Content>
@@ -23,7 +30,7 @@ export function Confirmation() {
         </Subtitle>
 
         <ButtonContainer>
-          <Button title="Começar" />
+          <Button onPress={handleNavigateToPlantSelection} title="Começar" />
         </ButtonContainer>
       </Content>
 
