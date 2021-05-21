@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { EnvironmentButton } from '../../components/EnvironmentButton';
@@ -5,6 +6,7 @@ import { Header } from '../../components/Header';
 import { Load } from '../../components/Load';
 import { PrimaryPlantCard } from '../../components/PrimaryPlantCard';
 import api from '../../services/api';
+import { Plant } from '../../types/types';
 
 import { 
   Container,
@@ -22,20 +24,8 @@ export interface Environment {
   title: string;
 }
 
-export interface Plant {
-  id: number;
-  name: string;
-  photo: string;
-  about: string;
-  water_tips: string;
-  environments: [string];
-  frequency: {
-    times: number;
-    repeat_every: string;
-  }
-}
-
 export function PlantSelection() {
+  const navigation = useNavigation();
   const [environments, setEnvironments] = useState<Environment[]>([]);
   const [plants, setPlants] = useState<Plant[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<Plant[]>([]);
@@ -43,7 +33,6 @@ export function PlantSelection() {
   const [isLoading, setIsLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [renderMore, setRenderMore] = useState(true);
-  const [renderedAll, setRenderedAll] = useState(false);
 
   async function getPlants() {
     const { data } = await api.get(`plants?_sort=name&_order=asc&_page=${page}&_limit=8`);
@@ -81,6 +70,10 @@ export function PlantSelection() {
     setPage(oldState => oldState + 1);
 
     getPlants();
+  }
+
+  function handleNavigateToPlantDetails(plant: Plant) {
+    navigation.navigate('PlantDetails', { plant });
   }
 
   useEffect(() => {
@@ -137,7 +130,7 @@ export function PlantSelection() {
           data={filteredPlants}
           keyExtractor={(plant) => plant.id}
           renderItem={({ item: plant }) => (
-            <PrimaryPlantCard data={plant} />
+            <PrimaryPlantCard data={plant} onPress={() => handleNavigateToPlantDetails(plant)} />
           )}
           showsVerticalScrollIndicator={false}
           numColumns={2}
