@@ -1,9 +1,8 @@
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
   flex: 1;
-  justify-content: space-between;
   background: #f0f0f0;
 `;
 

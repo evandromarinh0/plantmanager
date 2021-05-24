@@ -8,12 +8,14 @@ export interface Plant {
   frequency: {
     times: number;
     repeat_every: string;
-  },
+  };
+  hour: string;
   dateTimePickerNotification: Date;
 }
 
 export interface StoragedPlants {
   [id: string]: {
     data: Plant;
+    notificationId: string;
   }
 }

@@ -76,40 +76,43 @@ export function PlantDetails() {
   }
 
   return(
-    <Container>
-    <PlantInfo>
-      <SvgFromUri uri={plant.photo} height={150} width={150} />
-      <PlantName>{plant.name}</PlantName>
-      <PlantDescription>{plant.about}</PlantDescription>
-    </PlantInfo>
+    <Container
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ justifyContent: 'space-between' }}
+    >
+      <PlantInfo>
+        <SvgFromUri uri={plant.photo} height={150} width={150} />
+        <PlantName>{plant.name}</PlantName>
+        <PlantDescription>{plant.about}</PlantDescription>
+      </PlantInfo>
 
-    <Controller>
-      <TipContainer>
-        <PlantImage source={waterdropImg} />
-        <TipText>{plant.water_tips}</TipText>
-      </TipContainer>
+      <Controller>
+        <TipContainer>
+          <PlantImage source={waterdropImg} />
+          <TipText>{plant.water_tips}</TipText>
+        </TipContainer>
 
-      <Reminder>
-        Escolha o melhor horário para ser lembrado:
-      </Reminder>
+        <Reminder>
+          Escolha o melhor horário para ser lembrado:
+        </Reminder>
 
-      { showDateTimePicker && (
-        <DateTimePicker 
-          value={selectedDateTime}
-          mode="time"
-          display="default"
-          onChange={handleChangeTime}
-        />
-      )}
+        { showDateTimePicker && (
+          <DateTimePicker 
+            value={selectedDateTime}
+            mode="time"
+            display="default"
+            onChange={handleChangeTime}
+          />
+        )}
 
-      { Platform.OS === 'android' && (
-        <AndroidDateTimePicker onPress={handleOpenAndroidDateTimePicker}>
-          <AndroidDateTimePickerText>{`⏰ ${format(selectedDateTime, 'HH:mm')}`}</AndroidDateTimePickerText>
-        </AndroidDateTimePicker>
-      )}
+        { Platform.OS === 'android' && (
+          <AndroidDateTimePicker onPress={handleOpenAndroidDateTimePicker}>
+            <AndroidDateTimePickerText>{`⏰ ${format(selectedDateTime, 'HH:mm')}`}</AndroidDateTimePickerText>
+          </AndroidDateTimePicker>
+        )}
 
-      <Button onPress={handleStoragePlant} title="Cadastrar planta" />
-    </Controller>
+        <Button onPress={handleStoragePlant} title="Cadastrar planta" />
+      </Controller>
     </Container>
   );
 }

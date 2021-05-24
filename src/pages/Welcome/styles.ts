@@ -15,7 +15,6 @@ export const Wrapper = styled.View`
 
 export const Title = styled.Text`
   font-size: 28px;
-  font-weight: bold;
   text-align: center;
   margin-top: 38px;
   line-height: 34px;

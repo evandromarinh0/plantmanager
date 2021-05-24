@@ -36,3 +36,20 @@ export const TimeToWater = styled.Text`
   font-family: 'Jost_600SemiBold';
   color: #738078;
 `;
+
+export const TrashButtonContainer = styled.View`
+`;
+
+export const RemoveButton = styled(RectButton)`
+  width: 100px;
+  height: 85px;
+  background: #E83F5B;
+  margin-top: 15px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  right: 16px;
+  padding-left: 8px;
+`;
